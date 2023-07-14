@@ -5,17 +5,24 @@ function open_procedure(a,s,open,close_val,red_light,green_light,light)
 %   wait 5 sec
 %   change light to red
 %   close gate
-
+    global servo_guage;
+    
+    %Open
     writePosition(s,open);
+    servo_guage.Value=90;
     writeDigitalPin(a,red_light,0);
     writeDigitalPin(a,green_light,1);
-    light.Color = "green"
+    light.Color = "green";
+    
     pause(5);
+    
+    %Close
     writeDigitalPin(a,green_light,0);
     writeDigitalPin(a,red_light,1);
-    light.Color = "red"
+    light.Color = "red";
     pause(0.1)
     writePosition(s,close_val);
+    servo_guage.Value=0;
 
 
 end
