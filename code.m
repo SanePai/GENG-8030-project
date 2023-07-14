@@ -28,6 +28,7 @@ total_spaces = 13;
 %UI Figure
 f = uifigure("Position",[100 100 640 480],"Name","GUI for Smart Parking"...
 ,"Visible", "off"); %Create and hide figure until all elements load
+f.CloseRequestFcn = @(src, event) close_confirm(src);
 
 %Buttons
 b1 = uibutton(f,"Position",[164 125 100 50], "Text","Enter", "FontSize",18);
@@ -84,5 +85,16 @@ while true
     %If exit button is pressed
     if exit_val == 1
         exit_fn(a,s);
+    end
+end
+
+function close_confirm(f)
+    selection = uiconfirm(f,'Closing this window will stop the program. Do you want to continue?',...
+            'Warning', 'Icon','warning');
+    switch selection
+            case 'OK'
+                delete(f)
+            case 'Cancel'
+                return
     end
 end
