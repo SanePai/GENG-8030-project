@@ -1,11 +1,11 @@
-function open_procedure(a,s,open,close_val,red_light,green_light,light)
-%Used to open the gate and control traffic light
-%   Open gate
-%   Change light to green
-%   wait 5 sec
-%   change light to red
-%   close gate
-    global servo_guage;
+function open_procedure(a,s)
+    %Used to open the gate and control traffic light
+    %Open gate
+    %Change light to green
+    %wait 5 sec
+    %change light to red
+    %close gate
+    global servo_guage open close_val red_light green_light light;
     
     %Open
     writePosition(s,open);

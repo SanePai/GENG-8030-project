@@ -13,21 +13,21 @@ initializeLCD(lcd);
 % Initialize Servo object
 s = servo(a, 'D9');
 
-%Define pins and vals
+%Define pins and values
 red_light = 'D5';
 green_light = 'D6';
 entry_button = 'D11';
 exit_button = 'D12';
 close_val = 0;
 open = 0.5;
-spaces_open = 1; %Number of spaces open in the lot
+spaces_open = 12; %Number of spaces open in the lot
 total_spaces = 13;
 
 %% UI 
 
 %UI Figure
 f = uifigure("Position",[100 100 640 480],"Name","GUI for Smart Parking"...
-);
+,"Visible", "off"); %Create and hide figure until all elements load
 
 %Buttons
 b1 = uibutton(f,"Position",[164 125 100 50], "Text","Enter", "FontSize",18);
@@ -44,9 +44,8 @@ light_label = uilabel(f, "HorizontalAlignment","center","FontSize",18,...
 spaces_open_label = uitextarea(f,"HorizontalAlignment","center",...
     "FontSize",36, "FontWeight","bold", "Position", [73 363 495 96], "Editable","off");
 spaces_open_label_msg = convertStringsToChars("Spaces Left: "+spaces_open);
-spaces_open_label.Value = {'Welcome'; spaces_open_label_msg};
 
-%Servo position
+%Servo position guage
 servo_guage = uigauge(f, 'ninetydegree', "Limits",[0 90],...
     "MajorTicks",[0 90], "MajorTickLabels",{'close', 'open'}, ...
     "Orientation", "northeast", "ScaleDirection", "counterclockwise", ...

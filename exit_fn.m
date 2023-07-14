@@ -1,7 +1,7 @@
 function exit_fn(a,s)
-    global open close_val red_light green_light spaces_open lcd total_spaces light
-    if spaces_open<total_spaces
-            open_procedure(a,s,open,close_val,red_light,green_light, light);
+    global spaces_open lcd total_spaces;
+    if spaces_open<total_spaces %Open the gate only if spaces_open is less than total spaces in the lot
+            open_procedure(a,s);
             spaces_open = spaces_open+1;
             lcd_printer(lcd,spaces_open);
     else
