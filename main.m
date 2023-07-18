@@ -20,7 +20,7 @@ entry_button = 'D11';
 exit_button = 'D12';
 close_val = 0;
 open = 0.5;
-spaces_open = 12; %Number of spaces open in the lot
+spaces_open = 1; %Number of spaces open in the lot
 total_spaces = 13;
 
 %% UI 
@@ -79,17 +79,20 @@ while true
 
     %If entry button is pressed
     if entry_val == 1
-        entry_fn(a,s);
+        entry_fn(a,s,b1,b2);
     end
 
     %If exit button is pressed
     if exit_val == 1
-        exit_fn(a,s);
+        exit_fn(a,s,b1,b2);
     end
 end
 
+
+%% UI functions
 function close_confirm(f)
-    selection = uiconfirm(f,'Closing this window will stop the program. Do you want to continue?',...
+    selection = uiconfirm(f,['Closing this window will stop the program.' ...
+        ' Do you want to continue?'],...
             'Warning', 'Icon','warning');
     switch selection
             case 'OK'
@@ -97,4 +100,12 @@ function close_confirm(f)
             case 'Cancel'
                 return
     end
+end
+
+function entry_fn_gui(~, ~, a, s, b1, b2)
+    entry_fn(a,s,b1,b2);
+end
+
+function exit_fn_gui(~, ~, a, s, b1, b2)
+    exit_fn(a,s,b1,b2);
 end
