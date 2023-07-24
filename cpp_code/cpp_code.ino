@@ -12,7 +12,7 @@ const int entry_button = 11;
 const int exit_button = 12;
 const int close_val = 0;
 const int open = 90;
-int spaces_open = 12;
+int spaces_open = 13;
 const int total_spaces = 13;
 
 
@@ -32,6 +32,25 @@ void setup()
   // Intial state 
   gate_servo.write(close_val);
   digitalWrite(red_light,1);
+  
+  // Welcome messages
+  lcd.clear();
+  lcd.print("Welcome");
+  delay(2000);
+  
+  lcd.clear();
+  lcd.print("Group 19");
+  lcd.setCursor(0,1);
+  lcd.print("1.Kushaal");
+  delay(2000);
+    
+  lcd.clear();
+  lcd.print("2.Harsha");
+  lcd.setCursor(0,1);
+  lcd.print("3.Pavan");
+  delay(2000);
+  
+  
   lcd_printer(spaces_open);
 
 

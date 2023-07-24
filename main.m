@@ -20,7 +20,7 @@ entry_button = 'D11';
 exit_button = 'D12';
 close_val = 0;
 open = 0.5;
-spaces_open = 1; %Number of spaces open in the lot
+spaces_open = 13; %Number of spaces open in the lot
 total_spaces = 13;
 
 %% UI 
@@ -44,7 +44,6 @@ light_label = uilabel(f, "HorizontalAlignment","center","FontSize",18,...
 %Spaces open text
 spaces_open_label = uitextarea(f,"HorizontalAlignment","center",...
     "FontSize",36, "FontWeight","bold", "Position", [73 363 495 96], "Editable","off");
-spaces_open_label_msg = convertStringsToChars("Spaces Left: "+spaces_open);
 
 %Servo position guage
 servo_guage = uigauge(f, 'ninetydegree', "Limits",[0 90],...
@@ -58,10 +57,33 @@ servo_guage_label = uilabel(f,"HorizontalAlignment","center","FontSize",18,...
 %% Default state
 writePosition(s,0); %Closed gate
 writeDigitalPin(a,red_light,1); %Red traffic light
-lcd_printer(lcd,spaces_open);
 light.Color = "red";
-
 f.Visible = "on"; %Display figure after all elements load
+
+%% Startup messages
+
+%Welcome
+printLCD(lcd,'Welcome');
+spaces_open_label.Value = "Welcome";
+pause(2);
+
+%Group number and names
+clearLCD(lcd);
+printLCD(lcd,'Group 19');
+printLCD(lcd,'1.Kushaal');
+spaces_open_label.Value = {'Group 19','1.Kushaal'};
+pause(2);
+
+clearLCD(lcd);
+printLCD(lcd,'2.Harsha');
+printLCD(lcd,'3.Pavan');
+spaces_open_label.Value = {'2.Harsha','3.Pavan'};
+pause(2);
+
+lcd_printer(lcd,spaces_open);
+
+
+
 %% Main loop
 while true
     entry_val = readDigitalPin(a,entry_button);
